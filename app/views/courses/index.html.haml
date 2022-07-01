@@ -1,24 +1,24 @@
-%h1 Listing courses
+%h1
+  Courses:
+  = @courses.count
 
-%table.table
-  %thead
-    %tr
-      %th Title
-      %th Description
-      %th User
-      %th
-      %th
+.row
+  .col-md-2
+    .form-inline
+      = search_form_for @q do |f|
+        = f.search_field :title_cont, placeholder: 'title', class: 'form-control form-control-sm'
+        = f.search_field :short_description_cont, placeholder: 'short_description', class: 'form-control form-control-sm'
+        / = f.search_field :language_cont, placeholder: 'language', class: 'form-control form-control-sm'
+        = f.select :language_cont, Course.languages, include_blank: true
+        / = f.search_field :level_cont, placeholder: 'level', class: 'form-control form-control-sm'
+        = f.select :level_cont, Course.levels, include_blank: true
+        = f.search_field :price_eq, placeholder: 'price', class: 'form-control form-control-sm'
+        = f.search_field :user_email_cont, placeholder: 'user email', class: 'form-control form-control-sm'
+        = f.submit
+      .ml-2
+      = link_to 'refresh', courses_path
 
-  %tbody
-    - @courses.each do |course|
-      %tr
-        %td= course.title
-        %td= course.description
-        %td= course.user.email
-        %td= link_to 'Show', course
-        %td= link_to 'Edit', edit_course_path(course)
-        %td= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Course', new_course_path
+  .col-md-10
+    .card-columns
+      - @courses.each do |course|
+        = render 'courses/course', course:course

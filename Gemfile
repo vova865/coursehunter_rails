@@ -57,3 +57,11 @@ gem 'simple_form'
 gem 'devise'
 gem 'faker'
 gem 'rubocop', require: false
+
+gem 'ransack'
+
+gem 'public_activity'
+
+gem 'rolify'
+
+gem 'pundit', '~> 2.2'
