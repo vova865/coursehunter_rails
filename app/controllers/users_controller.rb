@@ -10,8 +10,6 @@ class UsersController < ApplicationController
 
   def edit; end
 
-  def destroy; end
-
   def update
     if @user.update(user_params)
       redirect_to users_path, notice: "User #{@user.email} was successfully updated."
@@ -19,6 +17,8 @@ class UsersController < ApplicationController
       render :edit
     end
   end
+
+  def destroy; end
 
   private
 

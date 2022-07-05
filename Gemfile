@@ -65,3 +65,5 @@ gem 'public_activity'
 gem 'rolify'
 
 gem 'pundit', '~> 2.2'
+
+gem 'net-smtp', require: false
