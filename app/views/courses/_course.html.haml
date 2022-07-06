@@ -18,9 +18,10 @@
         = course.created_at.strftime('%d-%b-%Y')
         .row
         .fa.fa-chalkboard-teacher
-        = course.user
-    - if policy(course).edit?
-        .card-footer
-            = link_to 'Edit', edit_course_path(course), class: 'btn btn-sm btn-warning'
-            = link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+        = link_to course.user, user_path(course.user)
+    - if current_user
+        - if policy(course).edit?
+            .card-footer
+                = link_to 'Edit', edit_course_path(course), class: 'btn btn-sm btn-warning'
+                = link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
 

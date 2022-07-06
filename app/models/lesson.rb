@@ -5,6 +5,8 @@ class Lesson < ApplicationRecord
   belongs_to :course
   validates :title, :content, :course, presence: :true
 
+  has_rich_text :content
+
   def to_s
     title
   end
