@@ -22,6 +22,17 @@ class User < ApplicationRecord
     elsif self.roles.blank?
       self.add_role(:student)
       self.add_role(:teacher)
-end
+    end
   end
+
+  validate :must_have_a_role, on: :update
+
+  private
+
+  def must_have_a_role
+    unless roles.any?
+      errors.add(:roles, 'must have at least one role')
+    end
+  end
+
 end

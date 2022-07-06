@@ -16,7 +16,8 @@
         .row
         .fa.fa-chalkboard-teacher
         = course.user
-    .card-footer
+    - if policy(course).edit?
+        .card-footer
         = link_to 'Show', course, class: 'btn btn-dark'
         = link_to 'Edit', edit_course_path(course), class: 'btn btn-dark'
         = link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-dark'
