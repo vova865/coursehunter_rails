@@ -3,8 +3,9 @@
 - @activities.each do |a|
   .row
   = a.trackable_type
-  = a.trackable_id
-  = link_to a.trackable, a.trackable
+  = a.trackable
+  user:
   = a.owner
-  = a.parameters
   = a.key
+  on:
+  = a.created_at.strftime('%d %b, %Y at %I:%M %p')
