@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LessonPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
@@ -30,4 +32,3 @@ class LessonPolicy < ApplicationPolicy
     @record.course.user_id == @user.id
   end
 end
-

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CoursesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_course, only: %i[show edit update destroy]
@@ -7,6 +9,8 @@ class CoursesController < ApplicationController
 
     @q = Course.ransack(params[:q])
     @courses = @q.result.includes(:user)
+    # binding.pry
+    @pagy, @courses = pagy(@courses)
   end
 
   def show

@@ -4,6 +4,6 @@
   .card-body
     = render 'form'
   .card-footer
-    = link_to 'Show', @lesson
+    = link_to 'Show', course_lesson_path(@course)
     \|
-    = link_to 'Back', lessons_path
+    = link_to 'Back', course_path(@course)

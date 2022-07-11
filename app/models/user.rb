@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -7,7 +9,7 @@ class User < ApplicationRecord
 
   ONLINE_PERIOD = 5.minutes
 
-  scope :online, -> { where('updated_at > ?', ONLINE_PERIOD.ago)}
+  scope :online, -> { where('updated_at > ?', ONLINE_PERIOD.ago) }
 
   rolify
 
@@ -42,5 +44,4 @@ class User < ApplicationRecord
       errors.add(:roles, 'Must have at least one role')
     end
   end
-
 end

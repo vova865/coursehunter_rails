@@ -1,9 +1,9 @@
-class StaticPagesController < ApplicationController
-  def landing_page
-  end
+# frozen_string_literal: true
 
-  def privacy_policy
-  end
+class StaticPagesController < ApplicationController
+  def landing_page; end
+
+  def privacy_policy; end
 
   def activity
     @activities = PublicActivity::Activity.all

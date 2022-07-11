@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  include Pagy::Backend
   include PublicActivity::StoreController
   include Pundit
   protect_from_forgery

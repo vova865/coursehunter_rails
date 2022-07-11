@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LessonsController < ApplicationController
   before_action :set_lesson, only: %i[ show edit update destroy ]
 
@@ -16,17 +18,19 @@ class LessonsController < ApplicationController
   end
 
   def edit
+    @course = Course.find(params[:course_id])
     authorize @lesson
   end
 
   def create
     @lesson = Lesson.new(lesson_params)
     @course = Course.find(params[:course_id])
-    @lesson.course_id = @course.id
-    # authorize @lesson
+    @lesson = @course.lessons.create(lesson_params)
+    # @lesson.course_id = @course.id
+    authorize @lesson
     respond_to do |format|
       if @lesson.save
-        format.html { redirect_to course_lesson_path(@course, @lesson), notice: 'Lesson was successfully created.' } #
+        format.html { redirect_to course_lesson_path(@course, @lesson), notice: 'Lesson was successfully created.' }
         format.json { render :show, status: :created, location: @lesson }
       else
         format.html { render :new, status: :unprocessable_entity }

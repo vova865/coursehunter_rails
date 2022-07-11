@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update]
+  before_action :set_user, only: %i[edit update]
 
   def index
     # @users = User.all.order(created_at: :desc)
@@ -8,11 +10,9 @@ class UsersController < ApplicationController
     @users = @q.result(distinct: true)
   end
 
-  def show
+  def show; end
 
-  end
-
-  def edit;
+  def edit
     authorize @user
   end
 
