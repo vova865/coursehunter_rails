@@ -14,6 +14,7 @@ class User < ApplicationRecord
   rolify
 
   has_many :courses
+  has_many :enrollments
 
   def to_s
     email
@@ -44,4 +45,8 @@ class User < ApplicationRecord
       errors.add(:roles, 'Must have at least one role')
     end
   end
+
+  # def buy_course(course)
+  #   self.enrollments.create(course: course, price: course.price)
+  # end
 end

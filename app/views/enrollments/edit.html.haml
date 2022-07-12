@@ -1,0 +1,11 @@
+.card
+  .card-header
+    %h3
+      .fa.fa-lock-open
+        Editing enrollment
+  .card-body
+    = render 'form'
+  .card-footer
+    = link_to 'Show', @enrollment
+    \|
+    = link_to 'Back', enrollments_path

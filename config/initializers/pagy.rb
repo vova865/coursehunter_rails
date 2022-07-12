@@ -14,7 +14,7 @@
 # Instance variables
 # See https://ddnexus.github.io/pagy/api/pagy#instance-variables
 # Pagy::DEFAULT[:page]   = 1                                  # default
-# Pagy::DEFAULT[:items]  = 20                                 # default
+Pagy::DEFAULT[:items] = 2 # default
 # Pagy::DEFAULT[:outset] = 0                                  # default
 
 
@@ -122,7 +122,7 @@
 
 # Bootstrap extra: Add nav, nav_js and combo_nav_js helpers and templates for Bootstrap pagination
 # See https://ddnexus.github.io/pagy/extras/bootstrap
-# require 'pagy/extras/bootstrap'
+require 'pagy/extras/bootstrap'
 
 # Bulma extra: Add nav, nav_js and combo_nav_js helpers and templates for Bulma pagination
 # See https://ddnexus.github.io/pagy/extras/bulma
@@ -243,3 +243,4 @@
 
 # When you are done setting your own default freeze it, so it will not get changed accidentally
 Pagy::DEFAULT.freeze
+

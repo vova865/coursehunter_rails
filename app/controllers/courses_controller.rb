@@ -9,7 +9,6 @@ class CoursesController < ApplicationController
 
     @q = Course.ransack(params[:q])
     @courses = @q.result.includes(:user)
-    # binding.pry
     @pagy, @courses = pagy(@courses)
   end
 
