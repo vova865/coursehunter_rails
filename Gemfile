@@ -33,6 +33,7 @@ group :development do
   gem 'pry-rails'
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'spring'
+  gem 'brakeman'
   gem 'web-console', '>= 4.1.0'
 end
 
@@ -66,3 +67,5 @@ gem 'pundit', '~> 2.2'
 gem 'net-smtp', require: false
 
 gem 'pagy'
+
+

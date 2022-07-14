@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :courses do
     resources :lessons
+    resources :enrollments, only: %i[new create]
   end
   resources :users, only: %i[index edit destroy show update]
   root to: 'static_pages#landing_page'
