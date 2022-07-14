@@ -13,7 +13,6 @@
   .col-lg-6
     - if policy(@course).new?
       = link_to 'Add lesson', new_course_lesson_path(@course, @lesson), class: "btn btn-outline-primary"
-    %br
-    %br
+      %p
     - @lessons.each do |lesson|
       = render 'lessons/lesson', lesson: lesson

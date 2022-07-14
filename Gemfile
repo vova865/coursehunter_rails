@@ -67,5 +67,3 @@ gem 'pundit', '~> 2.2'
 gem 'net-smtp', require: false
 
 gem 'pagy'
-
-
