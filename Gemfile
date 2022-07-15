@@ -67,3 +67,6 @@ gem 'pundit', '~> 2.2'
 gem 'net-smtp', require: false
 
 gem 'pagy'
+
+gem 'aws-sdk-s3', '~> 1'
+

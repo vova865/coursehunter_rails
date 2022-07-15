@@ -13,6 +13,8 @@ class Course < ApplicationRecord
 
   has_rich_text :description
 
+  has_one_attached :image
+
   LANGUAGES = [:"English", :"Spanish", :"Russian"]
   def self.languages
     LANGUAGES.map { |language| [language, language] }
