@@ -64,6 +64,18 @@ class CoursesController < ApplicationController
     end
   end
 
+  def purchased
+    @q = Course.ransack(params[:q])
+    @pagy, @courses = pagy(Course.joins(:enrollments).where(enrollments: { user_id: current_user.id }))
+    render 'index'
+  end
+
+  def pending_review
+    @q = Course.ransack(params[:q])
+    @pagy, @courses = pagy(Course.joins(:enrollments).merge(Enrollment.pending_review.where(user_id: current_user.id)))
+    render 'index'
+  end
+
   private
 
   def set_course

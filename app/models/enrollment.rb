@@ -4,10 +4,15 @@ class Enrollment < ApplicationRecord
 
   validates :user, :course, presence: true
 
+  validates_presence_of :rating, if: :review?
+  validates_presence_of :review, if: :rating?
+
   validates_uniqueness_of :user_id, scope: :course_id
   validates_uniqueness_of :course_id, scope: :user_id
 
   validate :cant_subscribe_to_own_course
+
+  scope :pending_review, -> { where(rating: [0, nil, ''], review: [0, nil, '']) }
 
   protected
   def cant_subscribe_to_own_course

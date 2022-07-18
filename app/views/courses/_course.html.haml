@@ -4,12 +4,16 @@
         = link_to course.title, course_path(course)
     .card-body
         %small= simple_format(course.short_description)
+        - if course.image.attached?
+            = image_tag course.image, width: '200px'
     .card-footer
         .fa.fa-globe-africa
         = course.language
         .fa.fa-signal
         = course.level
         = enrollment_button(course)
+        .row
+        = review_button(course)
     .card-footer
         .fa.fa-book
             = course.lessons.count
