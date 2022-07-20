@@ -70,3 +70,4 @@ gem 'pagy'
 
 gem 'aws-sdk-s3', '~> 1'
 
+gem "net-http"

@@ -65,14 +65,23 @@ class CoursesController < ApplicationController
   end
 
   def purchased
+    @ransack_path = purchased_courses_path
     @q = Course.ransack(params[:q])
     @pagy, @courses = pagy(Course.joins(:enrollments).where(enrollments: { user_id: current_user.id }))
     render 'index'
   end
 
   def pending_review
+    @ransack_path = pending_review_courses_path
     @q = Course.ransack(params[:q])
     @pagy, @courses = pagy(Course.joins(:enrollments).merge(Enrollment.pending_review.where(user_id: current_user.id)))
+    render 'index'
+  end
+
+  def created
+    @ransack_path = created_courses_path
+    @q = Course.ransack(params[:q])
+    @pagy, @courses = pagy(Course.where(user_id: current_user.id))
     render 'index'
   end
 

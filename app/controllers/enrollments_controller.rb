@@ -50,6 +50,11 @@ class EnrollmentsController < ApplicationController
     end
   end
 
+  def my_students
+    @enrollments = Enrollment.joins(:course).where(courses: {user_id: current_user.id})
+    render 'index'
+  end
+
   private
 
   def set_course

@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :enrollments
   devise_for :users
+  resources :enrollments do
+    get :my_students, on: :collection
+  end
   resources :courses do
-    get :purchased, :pending_review, on: :collection
+    get :purchased, :pending_review, :created, on: :collection
     resources :lessons
     resources :enrollments, only: %i[new create]
   end

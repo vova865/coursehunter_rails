@@ -19,6 +19,10 @@
             New Course
 
         - if current_user&.has_role?(:admin)
+          %li.nav-item{class: "#{'active font-weight-bold' if current_page?(users_path)}"}
+          = link_to users_path, class: 'nav-link' do
+            .fa.fa-users
+            Users
           %li.nav-item.dropdown
             %a#adminDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
               .fa.fa-cog
@@ -27,9 +31,13 @@
               = link_to users_path, class: "dropdown-item" do
                 .fa.fa-users
                 User
+                .badge.badge-danger
+                  = User.count
               = link_to enrollments_path, class: "dropdown-item" do
                 .fa.fa-lock-open
                 Enrollments
+                .badge.badge-danger
+                  = Enrollment.count
               = link_to static_pages_activity_path, class: "dropdown-item" do
                 .fa.fa-bell
                 Activity
@@ -43,12 +51,16 @@
               = link_to new_course_path, class: 'dropdown-item' do
                 .fa.fa-plus
                 New Course
-              = link_to root_path, class: "dropdown-item" do
+              = link_to created_courses_path, class: "dropdown-item" do
                 .fa.fa-graduation-cap
-                s
-              = link_to static_pages_activity_path, class: "dropdown-item" do
-                .fa.fa-bell
-                Activity
+                My courses
+                .badge.badge-danger
+                  = current_user.courses.count
+              = link_to my_students_enrollments_path, class: "dropdown-item" do
+                .fa.fa-users
+                My students
+                .badge.badge-danger
+                  = Enrollment.joins(:course).where(courses: { user_id: current_user.id }).count
 
         - if current_user&.has_role?(:student)
           %li.nav-item.dropdown
@@ -59,9 +71,13 @@
               = link_to purchased_courses_path, class: 'dropdown-item' do
                 .fa.fa-graduation-cap
                 Purchased courses
+                .badge.badge-danger
+                  = current_user.enrollments.count
               = link_to pending_review_courses_path, class: "dropdown-item" do
                 .fa.fa-star
                 Pending review
+                .badge.badge-danger
+                  = current_user.enrollments.pending_review.count
 
       .form-inline.my-2.my-lg-0
         = form_tag(courses_path, method: :get) do
