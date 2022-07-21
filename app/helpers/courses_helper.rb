@@ -22,9 +22,14 @@ module CoursesHelper
     if current_user
       if user_course.any?
         if user_course.pending_review.any?
-          link_to 'Add a review', edit_enrollment_path(user_course.first)
+          link_to edit_enrollment_path(user_course.first) do
+            'Add a review'
+          end
         else
-          link_to 'Thanks for reviewing! Your review', enrollment_path(user_course.first)
+          link_to enrollment_path(user_course.first) do
+            "<i class='fa fa-check'></i>".html_safe + " " +
+            'Thanks for reviewing! Your review'
+          end
         end
       end
     end

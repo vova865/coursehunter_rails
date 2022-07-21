@@ -1,6 +1,9 @@
-%h1
-  Courses:
-  = @courses.count
+%h3
+  .text-center
+    = action_name.humanize
+    courses
+    .badge.badge-info
+      = @courses.count
 
 .row
   .col-md-2

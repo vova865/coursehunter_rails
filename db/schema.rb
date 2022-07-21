@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_20_141752) do
+ActiveRecord::Schema.define(version: 2022_07_21_082245) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 2022_07_20_141752) do
     t.integer "price", default: 0, null: false
     t.float "average_rating", default: 0.0, null: false
     t.integer "enrollments_count", default: 0, null: false
+    t.integer "lessons_count", default: 0, null: false
     t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
@@ -135,6 +136,8 @@ ActiveRecord::Schema.define(version: 2022_07_20_141752) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.integer "courses_count", default: 0, null: false
+    t.integer "enrollments_count", default: 0, null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
