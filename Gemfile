@@ -29,11 +29,11 @@ end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
+  gem 'brakeman'
   gem 'listen', '~> 3.3'
   gem 'pry-rails'
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'spring'
-  gem 'brakeman'
   gem 'web-console', '>= 4.1.0'
 end
 
@@ -70,4 +70,6 @@ gem 'pagy'
 
 gem 'aws-sdk-s3', '~> 1'
 
-gem "net-http"
+gem 'net-http'
+
+gem 'rails-erd', group: :development

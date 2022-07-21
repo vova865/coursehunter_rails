@@ -6,7 +6,12 @@ module CoursesHelper
       if course.user == current_user
         link_to 'You created this course. View analytics', course_path(course)
       elsif course.enrollments.where(user: current_user).any?
-        link_to 'You have already buy course. Keep learning.', course_path(course)
+        link_to course_path(course) do
+          if course.lessons_count > 0
+            "<i class='fa fa-spinner'></i>".html_safe + " " +
+              number_to_percentage(course.progress(current_user), precision: 0)
+          end
+        end
       elsif course.price.positive?
         link_to number_to_currency(course.price), new_course_enrollment_path(course), class: 'btn btn-md btn-success'
       else
@@ -28,7 +33,7 @@ module CoursesHelper
         else
           link_to enrollment_path(user_course.first) do
             "<i class='fa fa-check'></i>".html_safe + " " +
-            'Thanks for reviewing! Your review'
+              'Thanks for reviewing! Your review'
           end
         end
       end
