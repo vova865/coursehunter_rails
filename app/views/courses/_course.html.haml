@@ -11,16 +11,22 @@
     = course.language
     .fa.fa-signal
     = course.level
-    .row
+  .card-footer
     = enrollment_button(course)
     .row
     = review_button(course)
   .card-footer
-    .fa.fa-book
+    .fa.fa-tasks
       = course.lessons.count
   .card-footer
     .text-warning.fa.fa-star
     = course.average_rating
+  .card-footer
+    -#Enrollments:
+    -#= course.enrollments.count
+    -#.row
+    Counter cache enrollments count:
+    = course.enrollments_count
   .card-footer
     .far.fa-clock
     = course.created_at.strftime('%d-%b-%Y')
