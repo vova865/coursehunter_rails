@@ -1,11 +1,17 @@
-%h1 Activity
+%h3
+  .text-center
+    Activity
+    .badge.badge-info
+      =@activities.count
+%p
 
-- @activities.each do |a|
-  .row
-  = a.trackable_type
-  = a.trackable
-  User:
-  = a.owner
-  = a.key
-  on:
-  = a.created_at.strftime('%d %b, %Y at %I:%M %p')
+%ul.list-group
+  - @activities.each do |a|
+    %li.list-group-item
+    = a.trackable_type
+    = a.trackable
+    User:
+    = a.owner
+    = a.key
+    on:
+    = a.created_at.strftime('%d %b, %Y at %I:%M %p')

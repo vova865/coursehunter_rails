@@ -1,18 +1,38 @@
-- content_for :title do
-  GemsBootcamp
-  \|
-  = @course.title
+.container
+  - content_for :title do
+    GemsBootcamp
+    \|
+    = @course.title
 
-= link_to 'Courses', courses_path
-\/
-= link_to @course.title, course_path(@course)
-%p
-.row
-  .col-lg-6
-    = render 'courses/course', course: @course
-  .col-lg-6
-    - if policy(@course).owner?
-      = link_to 'Add lesson', new_course_lesson_path(@course, @lesson), class: "btn btn-outline-primary"
+  = link_to 'Courses', courses_path
+  \/
+  = link_to @course.title, course_path(@course)
+  %p
+  .row
+    .col-lg-6
+      .sticky-top
+        = render 'courses/course', course: @course
+    %h3
+      .fa.fa-tasks
+      Lessons:
+      = @course.lessons_count
       %p
-    - @lessons.each do |lesson|
-      = render 'lessons/lesson', lesson: lesson
+      .fa.fa-spinner
+      = number_to_percentage(@course.progress(current_user), precision: 0)
+      %p
+      %ul.list-group
+        - @lessons.each do |lesson|
+          = render 'lessons/lesson_preview', lesson: lesson
+  %p
+  .col-lg-6
+  - if policy(@course).owner?
+    = link_to 'Add lesson', new_course_lesson_path(@course, @lesson), class: "btn btn-outline-primary"
+  %p
+  %h4
+    .fa.fa-comment
+    Reviews:
+    = @enrollments_with_review.count
+
+  - @enrollments_with_review.each do |enrollment|
+    = render 'enrollments/enrollment', enrollment: enrollment
+    %p
