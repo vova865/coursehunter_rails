@@ -4,7 +4,7 @@ class Lesson < ApplicationRecord
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
 
-  has_many :user_lessons
+  has_many :user_lessons, dependent: :destroy
 
   belongs_to :course, counter_cache: true
   # Course.find_each { |course| Course.reset_counters(course.id, :lessons) }

@@ -14,15 +14,15 @@
         = render 'courses/course', course: @course
     %h3
       .fa.fa-tasks
-      Lessons:
-      = @course.lessons_count
+      = pluralize(@course.lessons_count, 'lesson')
       %p
       .fa.fa-spinner
       = number_to_percentage(@course.progress(current_user), precision: 0)
       %p
       %ul.list-group
         - @lessons.each do |lesson|
-          = render 'lessons/lesson_preview', lesson: lesson
+          %li.list-group-item
+            = render 'lessons/lesson_preview', lesson: lesson
   %p
   .col-lg-6
   - if policy(@course).owner?
@@ -30,8 +30,7 @@
   %p
   %h4
     .fa.fa-comment
-    Reviews:
-    = @enrollments_with_review.count
+    = pluralize(@enrollments_with_review.count, 'review')
 
   - @enrollments_with_review.each do |enrollment|
     = render 'enrollments/enrollment', enrollment: enrollment
