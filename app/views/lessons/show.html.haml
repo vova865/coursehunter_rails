@@ -13,6 +13,7 @@
       %li.list-group-item
         Course:
         = link_to @course.title, @course
+        = @lesson.user_lessons.where(user: current_user).first.impressions
         %p
         .fa.fa-spinner
         = number_to_percentage(@course.progress(current_user), precision: 0)
