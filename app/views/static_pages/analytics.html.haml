@@ -1,0 +1,12 @@
+%h3
+  Users created per day
+  = line_chart charts_users_per_day_path
+%h3
+  Enrollments created per day
+  = column_chart @enrollments.group_by_day(:created_at).count
+%h3
+  Course popularity
+  = pie_chart @enrollments.joins(:course).group(:'courses.title').count
+%h3
+  Most paid courses
+  = bar_chart charts_money_makers_path

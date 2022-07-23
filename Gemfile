@@ -72,4 +72,6 @@ gem 'aws-sdk-s3', '~> 1'
 
 gem 'net-http'
 
-gem 'rails-erd', group: :development
+gem 'chartkick'
+
+gem 'groupdate'
