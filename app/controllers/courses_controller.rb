@@ -2,7 +2,7 @@
 
 class CoursesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_course, only: %i[show edit update destroy approve unapprove]
+  before_action :set_course, only: %i[show edit update destroy approve unapprove analytics]
 
   def index
     @courses = Course.all
@@ -105,6 +105,10 @@ class CoursesController < ApplicationController
     @q = Course.ransack(params[:q])
     @pagy, @courses = pagy(Course.all)
     render 'index'
+  end
+
+  def analytics
+    authorize @course, :owner?
   end
 
   private
