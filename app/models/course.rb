@@ -18,6 +18,11 @@ class Course < ApplicationRecord
 
   has_one_attached :image
 
+  scope :published, -> { where(published: true) }
+  scope :unpublished, -> { where(published: false) }
+  scope :approved, -> { where(approved: true) }
+  scope :unapproved, -> { where(approved: false) }
+
   LANGUAGES = [:"English", :"Spanish", :"Russian"]
   def self.languages
     LANGUAGES.map { |language| [language, language] }

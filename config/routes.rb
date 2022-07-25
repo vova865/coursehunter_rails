@@ -6,7 +6,11 @@ Rails.application.routes.draw do
     get :my_students, on: :collection
   end
   resources :courses do
-    get :purchased, :pending_review, :created, on: :collection
+    get :purchased, :pending_review, :created, :for_admin_all, on: :collection
+    member do
+      patch :approve
+      patch :unapprove
+    end
     resources :lessons
     resources :enrollments, only: %i[new create]
   end

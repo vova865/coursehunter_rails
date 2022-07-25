@@ -2,12 +2,12 @@
 
 class CoursesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_course, only: %i[show edit update destroy]
+  before_action :set_course, only: %i[show edit update destroy approve unapprove]
 
   def index
     @courses = Course.all
 
-    @q = Course.ransack(params[:q])
+    @q = Course.published.approved.ransack(params[:q])
     @courses = @q.result.includes(:user)
     @pagy, @courses = pagy(@courses)
   end
@@ -88,6 +88,25 @@ class CoursesController < ApplicationController
     render 'index'
   end
 
+  def approve
+    authorize @course, :approve?
+    @course.update_attribute(:approved, true)
+    redirect_to @course, notice: 'Course approved and visible!'
+  end
+
+  def unapprove
+    authorize @course, :approve?
+    @course.update_attribute(:approved, false)
+    redirect_to @course, notice: 'Course unapproved and hidden!'
+  end
+
+  def for_admin_all
+    @ransack_path = unapproved_courses_path
+    @q = Course.ransack(params[:q])
+    @pagy, @courses = pagy(Course.all)
+    render 'index'
+  end
+
   private
 
   def set_course
@@ -95,6 +114,7 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:title, :description, :short_description, :price, :language, :level, :image)
+    params.require(:course).permit(:title, :description, :short_description, :price, :language, :level, :image,
+                                   :published)
   end
 end

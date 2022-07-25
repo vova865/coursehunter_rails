@@ -9,7 +9,7 @@ class CoursePolicy < ApplicationPolicy
   end
 
   def edit?
-    @user.has_role?(:admin) || @record.user_id == @user.id
+    @record.user_id == @user.id
   end
 
   def destroy?
@@ -17,15 +17,19 @@ class CoursePolicy < ApplicationPolicy
   end
 
   def update?
-    @user.has_role?(:admin) || @record.user_id == @user.id
+    @record.user_id == @user.id
   end
 
   def create?
-    user.has_role?(:teacher)
+    @user.has_role?(:teacher)
   end
 
   def new?
-    user.has_role?(:teacher)
+    @user.has_role?(:teacher)
+  end
+
+  def approve?
+    @user.has_role?(:admin)
   end
 
   def owner?

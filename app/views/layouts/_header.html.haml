@@ -40,6 +40,11 @@
               = link_to analytics_path, class: "dropdown-item" do
                 .fa.fa-chart-line
                 Analytics
+              = link_to for_admin_all_courses_path, class: "dropdown-item" do
+                .fa.fa-graduation-cap
+                All courses
+                .badge.badge-danger
+                  = Course.count
 
 
         - if current_user&.has_role?(:teacher)
