@@ -6,13 +6,13 @@ class CoursesController < ApplicationController
 
   def index
     @courses = Course.all
-
     @q = Course.published.approved.ransack(params[:q])
     @courses = @q.result.includes(:user)
     @pagy, @courses = pagy(@courses)
   end
 
   def show
+    authorize @course
     @lessons = @course.lessons
     @enrollments_with_review = @course.enrollments.reviewed
   end
@@ -101,7 +101,7 @@ class CoursesController < ApplicationController
   end
 
   def for_admin_all
-    @ransack_path = unapproved_courses_path
+    @ransack_path = for_admin_all_courses_path
     @q = Course.ransack(params[:q])
     @pagy, @courses = pagy(Course.all)
     render 'index'

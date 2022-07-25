@@ -8,10 +8,21 @@
 %ul.list-group
   - @activities.each do |a|
     %li.list-group-item
-    = a.trackable_type
-    = a.trackable
-    User:
-    = a.owner
-    = a.key
-    on:
     = a.created_at.strftime('%d %b, %Y at %I:%M %p')
+    (#{time_ago_in_words(a.created_at)})
+    = a.trackable_type
+    - if a.trackable_type == 'Lesson'
+      - if Lesson.where(id: a.trackable_id).present?
+        = link_to a.trackable, course_lesson_path(a.trackable.course, a.trackable)
+      - else
+        Lesson was deleted
+    - else
+      = link_to a.trackable, a.trackable
+    = a.key
+    - if a.owner
+      by
+      = link_to a.owner, user_path(a.owner)
+      - if a.parameters.any?
+        = a.parameters
+%p
+!= pagy_bootstrap_nav(@pagy)

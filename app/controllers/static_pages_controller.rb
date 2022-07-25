@@ -7,9 +7,10 @@ class StaticPagesController < ApplicationController
 
   def activity
     if current_user.has_role?(:admin)
-      @activities = PublicActivity::Activity.all
+      @pagy, @activities = pagy(PublicActivity::Activity.order(created_at: :desc))
+
     else
-      redirect_to root_path, alert: "You are not authorized to access this page"
+      redirect_to root_path, alert: 'You are not authorized to access this page'
     end
   end
 
@@ -18,7 +19,7 @@ class StaticPagesController < ApplicationController
       @enrollments = Enrollment.all
       @courses = Course.all
     else
-      redirect_to root_path, alert: "You are not authorized to access this page"
+      redirect_to root_path, alert: 'You are not authorized to access this page'
     end
   end
 
