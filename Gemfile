@@ -78,3 +78,5 @@ gem 'chartkick'
 gem 'groupdate'
 
 # gem 'impressionist'
+
+gem 'ranked-model'

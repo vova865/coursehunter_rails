@@ -4,6 +4,9 @@ class Lesson < ApplicationRecord
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
 
+  include RankedModel
+  ranks :row_order, with_same: :course_id
+
   has_many :user_lessons, dependent: :destroy
 
   belongs_to :course, counter_cache: true
