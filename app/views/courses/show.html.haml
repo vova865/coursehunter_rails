@@ -24,10 +24,6 @@
           %li.list-group-item
             = render 'lessons/lesson_preview', lesson: lesson
   %p
-  .col-lg-6
-  - if policy(@course).owner?
-    = link_to 'Add lesson', new_course_lesson_path(@course, @lesson), class: "btn btn-outline-primary"
-  %p
   %h4
     .fa.fa-comment
     = pluralize(@enrollments_with_review.count, 'review')
