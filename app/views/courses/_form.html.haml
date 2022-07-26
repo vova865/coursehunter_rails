@@ -11,10 +11,13 @@
     = f.input :short_description
     = f.input :language, collection: Course.languages
     = f.input :level, collection: Course.levels
-    / = f.input :level, collection: %w[Beginner Intermediate Advance]
     = f.input :price
     = f.input :published
+    - if @course.image.attached?
+      = image_tag @course.image, width: '200px'
+      = @course.image.content_type
     = f.file_field :image
-
+    %small= f.error :image, class: 'text-danger'
+  %p
   .form-action
     = f.button :submit

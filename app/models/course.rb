@@ -7,6 +7,8 @@ class Course < ApplicationRecord
   validates :title, :short_description, :language, :price, :level, presence: true
   validates :description, presence: true, length: { minimum: 5 }
   validates :title, uniqueness: true
+  validates :image, attached: true, content_type: %i[png jpg jpeg], size: { less_than: 1.megabytes,
+                                                                            message: 'size should be under 1 megabytes' }
 
   belongs_to :user, counter_cache: true
   # User.find_each { |user| User.reset_counters(user.id, :courses) }
@@ -23,12 +25,12 @@ class Course < ApplicationRecord
   scope :approved, -> { where(approved: true) }
   scope :unapproved, -> { where(approved: false) }
 
-  LANGUAGES = [:"English", :"Spanish", :"Russian"]
+  LANGUAGES = %i[English Spanish Russian]
   def self.languages
     LANGUAGES.map { |language| [language, language] }
   end
 
-  LEVELS = [:"Beginner", :"Intermediate", :"Advanced"]
+  LEVELS = %i[Beginner Intermediate Advanced]
   def self.levels
     LEVELS.map { |level| [level, level] }
   end

@@ -80,3 +80,5 @@ gem 'groupdate'
 # gem 'impressionist'
 
 gem 'ranked-model'
+
+gem 'active_storage_validations'
