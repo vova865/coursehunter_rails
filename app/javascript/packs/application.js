@@ -21,3 +21,26 @@ import "bootstrap"
 import "@fortawesome/fontawesome-free/css/all"
 require("trix")
 require("@rails/actiontext")
+
+require("jquery")
+require("jquery-ui-dist")
+
+// $(document).on('turbolinks:load', function(){
+//   $('.lesson-sortable').sortable({
+//     update: function ((e, ui){
+//       let item = ui.item;
+//       let item_data = item.data();
+//       let params = {_method: 'put'};
+//       params[item_data.modelName] = {row_order_position: item.index()}
+//       $.ajax({
+//         type: 'POST',
+//         url: item_data = updateUrl,
+//         dataType: 'json',
+//         data: params
+//       });
+//     },
+//     stop: function(e, ui) {
+//       console.log("stop called when finishing sort of cards");
+//     }
+//   });
+// });
