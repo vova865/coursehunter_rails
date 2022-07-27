@@ -12,8 +12,11 @@ class Lesson < ApplicationRecord
   belongs_to :course, counter_cache: true
   # Course.find_each { |course| Course.reset_counters(course.id, :lessons) }
   validates :title, :content, :course, presence: true
+  validates :video, content_type: ['video/mp4'], size: { less_than: 50.megabytes }
 
   has_rich_text :content
+  has_one_attached :video
+  has_one_attached :video_thumbnail
 
   def to_s
     title
