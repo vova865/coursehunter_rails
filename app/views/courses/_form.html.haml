@@ -16,8 +16,7 @@
     - if @course.image.attached?
       = image_tag @course.image, width: '200px'
       = @course.image.content_type
-    = f.file_field :image
-    %small= f.error :image, class: 'text-danger'
+    = f.input :image
   %p
   .form-action
     = f.button :submit

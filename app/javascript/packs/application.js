@@ -25,6 +25,8 @@ require("@rails/actiontext")
 require("jquery")
 require("jquery-ui-dist")
 
+import "../trix-editor-overrides"
+
 // $(document).on('turbolinks:load', function(){
 //   $('.lesson-sortable').sortable({
 //     update: function ((e, ui){
