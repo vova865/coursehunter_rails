@@ -15,6 +15,6 @@ class Youtube
   end
 
   def to_trix_content_attachment_partial_path
-    "youtubes/thumbnail"
+    "youtube/thumbnail"
   end
 end
