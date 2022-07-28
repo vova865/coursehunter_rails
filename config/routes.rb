@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get 'privacy_policy', to: 'static_pages#privacy_policy'
   get 'static_pages/activity'
   get 'analytics', to: 'static_pages#analytics'
+  resources :youtube, only: :show
 
   namespace :charts do
     get 'users_per_day'

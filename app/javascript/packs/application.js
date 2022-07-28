@@ -23,9 +23,11 @@ require("trix")
 require("@rails/actiontext")
 
 require("jquery")
-require("jquery-ui-dist")
+// require("jquery-ui-dist")
 
 import "../trix-editor-overrides"
+
+import "youtube"
 
 // $(document).on('turbolinks:load', function(){
 //   $('.lesson-sortable').sortable({
