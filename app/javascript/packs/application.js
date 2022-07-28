@@ -48,3 +48,7 @@ import "youtube"
 //     }
 //   });
 // });
+
+$("video").bind("contextmenu", function (){
+  return false;
+});
