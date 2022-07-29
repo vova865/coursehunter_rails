@@ -1,5 +1,5 @@
 class EnrollmentsController < ApplicationController
-  before_action :set_enrollment, only: %i[show edit update destroy]
+  before_action :set_enrollment, only: %i[show edit update destroy certificate]
   before_action :set_course, only: %i[new create]
 
   def index
@@ -53,6 +53,23 @@ class EnrollmentsController < ApplicationController
   def my_students
     @enrollments = Enrollment.joins(:course).where(courses: {user_id: current_user.id})
     render 'index'
+  end
+
+  def certificate
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "#{@enrollment.course.title}, #{@enrollment.user.email}",
+               page_size: 'A4',
+               template: 'enrollments/show.pdf.haml',
+               layout: 'pdf.html.haml',
+               orientation: 'Landscape',
+               lowquality: true,
+               zoom: 1,
+               dpi: 75
+      end
+    end
+
   end
 
   private

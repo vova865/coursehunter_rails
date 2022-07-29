@@ -6,13 +6,11 @@
   %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
     %span.navbar-toggler-icon
   #navbarSupportedContent.collapse.navbar-collapse
-    /- if current_user && current_user.has_role?(:admin)
+    = link_to courses_path, class: 'nav-link' do
+      .fa.fa-graduation-cap
+      Courses
     - if current_user
       %ul.navbar-nav.mr-auto
-        %li.nav-item{class: "#{'active font-weight-bold' if current_page?(courses_path)}"}
-          = link_to courses_path, class: 'nav-link' do
-            .fa.fa-graduation-cap
-            Courses
         %li.nav-item{class: "#{'active font-weight-bold' if current_page?(new_course_path)}"}
           = link_to new_course_path, class: 'nav-link' do
             .fa.fa-plus
