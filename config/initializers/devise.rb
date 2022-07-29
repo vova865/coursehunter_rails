@@ -71,6 +71,8 @@ Devise.setup do |config|
   # enable it only for database (email + password) authentication.
   # config.params_authenticatable = true
 
+ config.omniauth :google_oauth2, '72412509935-qgk11h9fs19ia1kt5k25ik66e4f4k6ts.apps.googleusercontent.com', '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'
+
   # Tell if authentication through HTTP Auth is enabled. False by default.
   # It can be set to an array that will enable http authentication only for the
   # given strategies, for example, `config.http_authenticatable = [:database]` will

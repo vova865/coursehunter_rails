@@ -5,7 +5,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :trackable, :confirmable
+         :trackable, :confirmable, :omniauthable, omniauth_providers: [:google_oauth2]
 
   ONLINE_PERIOD = 5.minutes
 
@@ -16,6 +16,31 @@ class User < ApplicationRecord
   has_many :courses, dependent: :nullify
   has_many :enrollments, dependent: :nullify
   has_many :user_lessons, dependent: :nullify
+
+  def self.from_omniauth(access_token)
+    data = access_token.info
+    user = User.where(email: data['email']).first
+
+    # Uncomment the section below if you want users to be created if they don't exist
+    if user
+      user.name = access_token.info.name
+      user.provider = access_token.provider
+      user.uid = access_token.uid
+      user.image = access_token.info.image
+      user.token = access_token.credentials.token
+      user.expires_at = access_token.credentials.expires_at
+      user.expires = access_token.credentials.expires
+      user.refresh_token = access_token.credentials.refresh_token
+      user.save!
+    else
+      user = User.create(
+        email: data['email'],
+        password: Devise.friendly_token[0,20],
+        confirmed_at: Time.now
+      )
+    end
+    user
+  end
 
   def to_s
     email
@@ -45,10 +70,10 @@ class User < ApplicationRecord
 
   def view_lesson(lesson)
     user_lesson = self.user_lessons.where(lesson: lesson)
-    unless user_lesson.any?
-      self.user_lessons.create(lesson: lesson)
-    else
+    if user_lesson.any?
       user_lesson.first.increment!(:impressions)
+    else
+      self.user_lessons.create(lesson: lesson)
     end
   end
 
