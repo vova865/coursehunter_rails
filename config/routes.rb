@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     get :my_students, on: :collection
     get :certificate, on: :member
   end
-  resources :courses do
+  resources :courses, except: [:edit] do
     get :purchased, :pending_review, :created, :for_admin_all, on: :collection
     member do
       get :analytics

@@ -2,7 +2,7 @@
 
 class CoursesController < ApplicationController
   before_action :authenticate_user!, except: :index
-  before_action :set_course, only: %i[show edit update destroy approve unapprove analytics]
+  before_action :set_course, only: %i[show destroy approve unapprove analytics]
 
   def index
     @courses = Course.all
@@ -22,10 +22,6 @@ class CoursesController < ApplicationController
     authorize @course
   end
 
-  def edit
-    authorize @course
-  end
-
   def create
     @course = Course.new(course_params)
     authorize @course
@@ -37,19 +33,6 @@ class CoursesController < ApplicationController
         format.json { render :show, status: :created, location: @course }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def update
-    authorize @course
-    respond_to do |format|
-      if @course.update(course_params)
-        format.html { redirect_to course_url(@course), notice: 'Course was successfully updated.' }
-        format.json { render :show, status: :ok, location: @course }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @course.errors, status: :unprocessable_entity }
       end
     end

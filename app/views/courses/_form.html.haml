@@ -10,8 +10,8 @@
     -# %small= f.error :description, class: 'text-danger'
     = f.input :description, as: :rich_text_area
     = f.input :short_description
-    = f.input :language, collection: Course.languages
-    = f.input :level, collection: Course.levels
+    = f.input :language, collection: Course.languages, as: :radio_buttons
+    = f.input :level, collection: Course.levels, as: :radio_buttons
     = f.input :price
     = f.input :published
     - if @course.image.attached?
