@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get 'static_pages/activity'
   get 'analytics', to: 'static_pages#analytics'
   resources :youtube, only: :show
+  resources :course_creator
 
   namespace :charts do
     get 'users_per_day'

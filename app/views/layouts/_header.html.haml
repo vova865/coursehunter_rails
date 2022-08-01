@@ -10,6 +10,7 @@
       .fa.fa-graduation-cap
       Courses
     - if current_user
+      = link_to 'Course creator', course_creator_index_path
       %ul.navbar-nav.mr-auto
         %li.nav-item{class: "#{'active font-weight-bold' if current_page?(new_course_path)}"}
           = link_to new_course_path, class: 'nav-link' do
