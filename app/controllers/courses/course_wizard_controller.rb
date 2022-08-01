@@ -1,6 +1,5 @@
-class CourseCreatorController < ApplicationController
+class Courses::CourseWizardController < ApplicationController
   include Wicked::Wizard
-
   before_action :set_progress, only: [:show]
 
   steps :basic_info, :details
@@ -10,7 +9,7 @@ class CourseCreatorController < ApplicationController
   end
 
   def finish_wizard_path
-    courses_path
+    course_path
   end
 
   private

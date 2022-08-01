@@ -11,6 +11,7 @@
   .row
     .col-lg-6
       .sticky-top
+        = link_to 'Course creator', course_course_wizard_index_path(@course)
         = render 'courses/course', course: @course
     %h3
       .fa.fa-tasks
