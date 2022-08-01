@@ -23,4 +23,8 @@ class EnrollmentPolicy < ApplicationPolicy
   def update?
     @record.user_id == @user.id
   end
+
+  def certificate?
+    @record.course.lessons_count == @record.course.user_lessons.where(user: @record.user).count
+  end
 end

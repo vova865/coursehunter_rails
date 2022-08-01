@@ -1,0 +1,34 @@
+%center
+  %div{:style => "width:1200px; height:800px; padding:20px; text-align:center; border: 10px solid #563d7c"}
+    %div{:style => "width:1150px; height:750px; padding:20px; text-align:center; border: 5px solid #563d7c"}
+      %br
+      %br
+      %span{:style => "font-size:50px; font-weight:bold"} Certificate of Completion
+
+      %p
+      %br
+      %br
+      %br
+      %h3
+        This is to certify that the owner of the email address
+        %b
+          = @enrollment.user.email
+        has successfully completed the course
+        %b on the Courses.com platform
+
+      %b Course:
+      #{@enrollment.course.title}
+      %br
+      %b Certificate id:
+      #{@enrollment.id}
+
+      %p
+
+      %b Certificate url:
+      #{request.base_url}#{request.original_fullpath}
+
+      %center
+        %h3
+          = image_tag wicked_pdf_asset_base64('bmw.jpeg'), height: "30", width: "auto"
+          %p
+          www.Courses.com

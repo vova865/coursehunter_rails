@@ -40,4 +40,17 @@ module CoursesHelper
     end
   end
 
+  def certificate_button(course)
+    user_course = course.enrollments.where(user: current_user)
+    if current_user
+      if user_course.any?
+        if @course.progress(current_user) == 100
+          link_to 'Certificate', certificate_enrollment_path(user_course.first, format: :pdf), class: 'btn btn-sm btn-danger'
+        else
+          'Complete the course to view certificate'
+        end
+      end
+    end
+  end
+
 end

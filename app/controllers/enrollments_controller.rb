@@ -56,20 +56,14 @@ class EnrollmentsController < ApplicationController
   end
 
   def certificate
+    authorize @enrollment, :certificate?
     respond_to do |format|
-      format.html
       format.pdf do
         render pdf: "#{@enrollment.course.title}, #{@enrollment.user.email}",
                page_size: 'A4',
-               template: 'enrollments/show.pdf.haml',
-               layout: 'pdf.html.haml',
-               orientation: 'Landscape',
-               lowquality: true,
-               zoom: 1,
-               dpi: 75
+               template: 'enrollments/certificate.pdf.haml'
       end
     end
-
   end
 
   private

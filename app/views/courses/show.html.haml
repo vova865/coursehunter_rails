@@ -18,6 +18,7 @@
       %p
       .fa.fa-spinner
       = number_to_percentage(@course.progress(current_user), precision: 0)
+      = certificate_button(@course)
       %p
       %ul.list-group
         - @lessons.each do |lesson|
