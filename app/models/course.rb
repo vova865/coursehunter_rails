@@ -59,4 +59,8 @@ class Course < ApplicationRecord
     end
   end
 
+  def calculate_income
+    update_column :income, enrollments.map(&:price).sum
+  end
+
 end
