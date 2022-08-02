@@ -15,19 +15,16 @@ ActiveStorage.start()
 
 import 'bootstrap/dist/js/bootstrap'
 import 'bootstrap/dist/css/bootstrap'
-require("stylesheets/application.scss")
-
 import "bootstrap"
 import "@fortawesome/fontawesome-free/css/all"
+import "../trix-editor-overrides"
+import "youtube"
 require("trix")
 require("@rails/actiontext")
-
-require("jquery")
+require("stylesheets/application.scss")
 // require("jquery-ui-dist")
-
-import "../trix-editor-overrides"
-
-import "youtube"
+require("jquery")
+require("@nathanvda/cocoon")
 
 // $(document).on('turbolinks:load', function(){
 //   $('.lesson-sortable').sortable({

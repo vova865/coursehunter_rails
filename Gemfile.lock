@@ -103,6 +103,7 @@ GEM
     chartkick (4.2.0)
     childprocess (4.1.0)
     choice (0.2.0)
+    cocoon (1.2.15)
     coderay (1.1.3)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
@@ -383,6 +384,7 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   chartkick
+  cocoon
   devise
   faker
   groupdate
