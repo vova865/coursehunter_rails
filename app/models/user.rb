@@ -47,6 +47,9 @@ class User < ApplicationRecord
   end
 
   after_create :assign_default_role
+  after_create do
+    UserMailer.new_user(self).deliver_later
+  end
 
   def assign_default_role
     if User.count == 1
