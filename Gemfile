@@ -98,3 +98,5 @@ gem 'wicked'
 gem 'cocoon'
 
 gem 'stripe'
+
+gem 'sitemap_generator'
