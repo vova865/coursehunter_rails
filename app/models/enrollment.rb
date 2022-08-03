@@ -32,7 +32,7 @@ class Enrollment < ApplicationRecord
 
   def calculate_balance
     course.calculate_income
-    user.calculate_balance
+    user.calculate_enrollment_expences
   end
 
   protected

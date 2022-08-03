@@ -47,7 +47,7 @@ class Course < ApplicationRecord
 
   def update_rating
     if enrollments.any? && enrollments.where.not(rating: nil)
-      update_column :average_rating, enrollments.average(:rating).round(2).to_f
+      update_column :average_rating, enrollments.average(:rating).to_f.round(2)
     else
       update_column :average_rating, 0
     end
@@ -61,6 +61,7 @@ class Course < ApplicationRecord
 
   def calculate_income
     update_column :income, enrollments.map(&:price).sum
+    user.calculate_balance
   end
 
 end
