@@ -96,3 +96,5 @@ gem 'wkhtmltopdf-binary'
 gem 'wicked'
 
 gem 'cocoon'
+
+gem 'stripe'

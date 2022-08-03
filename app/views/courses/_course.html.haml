@@ -2,7 +2,7 @@
   .card-header
     .fa.fa-graduation-cap
     = link_to course.title, course_path(course)
-    = course.income
+    -# = course.income
     %small= simple_format(course.short_description)
     - if course.image.attached?
       .card-img-top

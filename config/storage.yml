@@ -6,6 +6,7 @@ local:
   service: Disk
   root: <%= Rails.root.join("storage") %>
 
+# EDITOR=vim rails credentials:edit
 # ./minio server ~/minio/data_test (run minio)
 minio:
   service: S3
