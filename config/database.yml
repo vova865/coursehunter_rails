@@ -91,3 +91,4 @@ production:
   password: <%= ENV['GEMS_BOOTCAMP_DATABASE_PASSWORD'] %>
   host: localhost
   port: 5432
+  url: <%= ENV['MY_APP_DATABASE_URL'] %>
