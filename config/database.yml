@@ -90,3 +90,4 @@ production:
   username: gems_bootcamp
   password: <%= ENV['GEMS_BOOTCAMP_DATABASE_PASSWORD'] %>
   host: localhost
+  port: 5432
