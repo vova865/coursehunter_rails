@@ -89,3 +89,4 @@ production:
   database: gems_bootcamp_production
   username: gems_bootcamp
   password: <%= ENV['GEMS_BOOTCAMP_DATABASE_PASSWORD'] %>
+  host: localhost
