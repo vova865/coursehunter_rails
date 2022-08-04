@@ -85,7 +85,7 @@ gem 'active_storage_validations'
 
 gem 'image_processing', '~> 1.0'
 
-gem 'recaptcha'
+gem 'recaptcha', '5.9'
 
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
